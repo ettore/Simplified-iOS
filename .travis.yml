@@ -1,4 +1,11 @@
 os: osx
 osx_image: xcode10.2
 language: swift
+# instruct travis not to install submodules
+git:
+  submodules: false
+
+# using the pre-script to install the submodules manually
+before_install:
+  - ./.travis-pre.sh
 script: xcodebuild clean build test -workspace Simplified.xcodeproj/project.xcworkspace -scheme "Simplified" -sdk iphonesimulator -destination "platform=iOS Simulator",OS=12.2,name="iPhone 8" ONLY_ACTIVE_ARCH=NO
